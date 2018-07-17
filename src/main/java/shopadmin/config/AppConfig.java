@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @ComponentScan("shopadmin")
 @EnableWebMvc
-@MapperScan("admin.mapper")
+@MapperScan("shopadmin.mapper")
 @PropertySource("classpath:jdbc.properties")
 public class AppConfig extends WebMvcConfigurerAdapter{
 	

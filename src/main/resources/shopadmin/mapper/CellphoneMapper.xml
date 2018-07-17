@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--    namespace对应Mapper接口名                -->
+<mapper namespace="shopadmin.mapper.CellphoneMapper">
+ 	<select id="findAll" resultType="Cellphone">
+ 		select 
+ 			ID id, NAME name, DESCRIPTION description, PRICE price, BRAND brand, MODEL model, OS os, 
+       		CPUBRAND cpuBrand, RAM ram, STORAGE storage, COLOR color 
+		from cellphones
+ 	</select>
+ 	
+ 	<select id="findOne" resultType="Cellphone">
+ 		select 
+ 			ID id, NAME name, DESCRIPTION description, PRICE price, BRAND brand, MODEL model, OS os, 
+       		CPUBRAND cpuBrand, RAM ram, STORAGE storage, COLOR color 
+		from cellphones where ID = #{id}
+ 	</select>
+ 	
+ 	<insert id="create">
+ 		insert into CELLPHONES(NAME,DESCRIPTION,PRICE,BRAND,MODEL,OS,CPUBRAND,RAM,STORAGE,COLOR) 
+       		values(#{name},#{description},#{price},#{brand},#{model},#{os},#{cpuBrand},#{ram},#{storage},#{color})
+ 	</insert>
+ 	
+ 	<update id="update">
+ 		update CELLPHONES set NAME = #{name},DESCRIPTION = #{description},PRICE = #{price},BRAND = #{brand},
+ 			MODEL = #{model},OS = #{os},CPUBRAND = #{cpuBrand},RAM = #{ram},STORAGE = #{storage},COLOR = #{color}
+ 			where ID = #{id}
+ 	</update>
+ 	
+ 	<delete id="delete">
+ 		delete from CELLPHONES where ID = #{id}
+ 	</delete>
+ 	
+ 	<select id="search" resultType="Cellphone">
+ 		select 
+ 			ID id, NAME name, DESCRIPTION description, PRICE price, BRAND brand, MODEL model, OS os, 
+       		CPUBRAND cpuBrand, RAM ram, STORAGE storage, COLOR color 
+		from cellphones
+		<where>
+			<if test="brand != null">
+				<bind name="brandPattern" value="'%' + brand + '%'"/>
+				BRAND like #{brandPattern}
+			</if>
+			
+			<if test="os != null">
+				<bind name="osPattern" value="'%' + os + '%'"/>
+				and os like #{osPattern}
+			</if>
+			
+			<if test="ramMin != null">
+				and RAM <![CDATA[>]]> #{ramMin}
+			</if>
+			
+			<if test="ramMax != null">
+				and RAM <![CDATA[<]]> #{ramMax}
+			</if>
+		</where>
+ 	</select>
+</mapper>
