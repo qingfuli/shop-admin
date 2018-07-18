@@ -44,3 +44,61 @@ insert into CELLPHONES(NAME,DESCRIPTION,PRICE,BRAND,MODEL,OS,CPUBRAND,RAM,STORAG
 insert into CELLPHONES(NAME,DESCRIPTION,PRICE,BRAND,MODEL,OS,CPUBRAND,RAM,STORAGE,COLOR)
        values('小米8SE','小米8SE...',179900,'小米（MI）','小米8 SE','Android','骁龙（Snapdragon)',6,64,'灰色');
 select id, name, description, price, brand, model, os, cpubrand, ram, storage, color from cellphones
+-- 管理员表
+create table OPERATORS(
+       ID int not null primary key,
+       USERNAME varchar2(128) not null,
+       PASSWORD varchar2(128) not null,
+       LAST_LOGIN_TIME date,
+       DESCRIPTION varchar2(1024)
+);
+
+create sequence SEQ_OPERATORS
+       minValue 1
+       maxValue 99999
+       start with 1
+       increment by 1
+       cache 20
+       order;
+       
+create trigger TRI_OPERATORS_ID 
+       before insert on OPERATORS 
+       for each row 
+         declare nextid number;
+         begin 
+           if :new.ID is null or :new.ID = 0 then
+             select SEQ_OPERATORS.Nextval 
+             into nextid 
+             from sys.dual;
+             :new.ID := nextid;
+           end if;
+end TRI_OPERATORS_ID;
+-- 用户表
+create table USERS(
+       ID int not null primary key,
+       USERNAME varchar2(128) not null,
+       PASSWORD varchar2(128) not null,
+       DESCRIPTION varchar2(1024)
+);
+
+create sequence SEQ_USERS
+       minValue 1
+       maxValue 99999
+       start with 1
+       increment by 1
+       cache 20
+       order;
+       
+create trigger TRI_USERS_ID 
+       before insert on USERS 
+       for each row 
+         declare nextid number;
+         begin 
+           if :new.ID is null or :new.ID = 0 then
+             select SEQ_USERS.Nextval 
+             into nextid 
+             from sys.dual;
+             :new.ID := nextid;
+           end if;
+end TRI_USERS_ID;
+

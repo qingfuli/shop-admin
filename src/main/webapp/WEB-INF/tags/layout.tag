@@ -3,13 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
+<%@ attribute name="title" required="true" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>手机列表</title>
+<title>${title} </title>
 
 <style type="text/css">
 /* .menu {
@@ -43,10 +45,10 @@
 						<!-- 用户管理 -->
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="collapse" data-target="#website-dropdown" href="#"><i class="icon-sitemap"></i> 用户管理 <b class="caret"></b></a>
-<!-- 							<ul id="website-dropdown" class="collapse">
-								<li><a href="listing.html">Pages</a></li>
-								<li><a href="listing.html">Menus</a></li>
-							</ul> -->
+ 							<ul id="website-dropdown" class="collapse">
+								<li><a href="${contextPath }/operators/">用户列表</a></li>
+								<li><a href="${contextPath }/operators/add">添加用户</a></li>
+							</ul> 
 						</li>
 						<!-- 订单管理 -->
 						<li class="dropdown">
@@ -161,7 +163,6 @@
 <script src="${contextPath}/assets/js/excanvas.min.js"></script>
 <script src="${contextPath}/assets/js/jquery.flot.min.js"></script>
 <script src="${contextPath}/assets/js/jquery.flot.resize.js"></script>
-</script>
 </body>
 </html>
 </html>
