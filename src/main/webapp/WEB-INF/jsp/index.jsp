@@ -8,6 +8,6 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
 
-<t:layout>
+<t:layout title="主页">
 	<h1>这是一个后台管理系统</h1>
 </t:layout>
