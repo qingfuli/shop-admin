@@ -8,7 +8,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
 
-<t:layout>
+<t:layout title="手机列表">
 	<h1>手机列表</h1>
 	
 	<form:form action="${contextPath }/cellphones/search" method="GET" commandName="searchCondition">

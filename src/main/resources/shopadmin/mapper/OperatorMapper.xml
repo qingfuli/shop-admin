@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="shopadmin.mapper.OperatorMapper">
+ 	<select id="findAll" resultType="Operator">
+ 		select 
+ 			ID id, USERNAME username, PASSWORD password, LAST_LOGIN_TIME lastLoginTime, DESCRIPTION description 
+		from OPERATORS
+ 	</select>
+ 	
+ 	<insert id="create" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
+ 		insert into OPERATORS(USERNAME, PASSWORD, DESCRIPTION)
+ 		values(#{username}, #{password}, #{description})
+ 	</insert>
+ 	
+ 	<select id="findOneByUsername" resultType="Operator">
+ 		select 
+ 			ID id, USERNAME username, PASSWORD password, LAST_LOGIN_TIME lastLoginTime, DESCRIPTION description 
+		from OPERATORS
+		where USERNAME = #{username}
+ 	</select>
+ 	
+ 	<update id="saveLoginTime">
+ 		update OPERATORS set LAST_LOGIN_TIME = to_date(#{loginTime} , 'yyyy-mm-dd hh24:mi:ss') where ID = #{id}
+ 	</update>
+</mapper>

@@ -8,7 +8,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
 
-<t:layout>
+<t:layout title="添加手机">
 	<h1>添加手机</h1>
 	<form:form action="" method="POST" commandName="cellphoneForm">
 		<sec:csrfInput/>
