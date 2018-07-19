@@ -44,40 +44,40 @@
 						</li>
 						<!-- 用户管理 -->
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="collapse" data-target="#website-dropdown" href="#"><i class="icon-sitemap"></i> 用户管理 <b class="caret"></b></a>
- 							<ul id="website-dropdown" class="collapse">
+							<a class="dropdown-toggle" data-toggle="collapse" data-target="#operator-dropdown" href="#"><i class="icon-sitemap"></i> 用户管理 <b class="caret"></b></a>
+ 							<ul id="operator-dropdown" class="collapse">
 								<li><a href="${contextPath }/operators/">用户列表</a></li>
 								<li><a href="${contextPath }/operators/add">添加用户</a></li>
 							</ul> 
 						</li>
 						<!-- 订单管理 -->
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="collapse" data-target="#website-dropdown" href="#"><i class="icon-sitemap"></i> 订单管理 <b class="caret"></b></a>
-<!-- 							<ul id="website-dropdown" class="collapse">
+							<a class="dropdown-toggle" data-toggle="collapse" data-target="#order-dropdown" href="#"><i class="icon-sitemap"></i> 订单管理 <b class="caret"></b></a>
+<!-- 							<ul id="order-dropdown" class="collapse">
 								<li><a href="listing.html">Pages</a></li>
 								<li><a href="listing.html">Menus</a></li>
 							</ul> -->
 						</li>
 						<!-- 商品管理 -->
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="collapse" data-target="#website-dropdown" href="#"><i class="icon-sitemap"></i> 商品管理 <b class="caret"></b></a>
- 							<ul id="website-dropdown" class="collapse">
+							<a class="dropdown-toggle" data-toggle="collapse" data-target="#goods-dropdown" href="#"><i class="icon-sitemap"></i> 商品管理 <b class="caret"></b></a>
+ 							<ul id="goods-dropdown" class="collapse">
 								<li><a href="${contextPath }/cellphones/add">商品列表</a></li>
 								<li><a href="${contextPath }/cellphones/">添加商品</a></li>
 							</ul>
 						</li>
 						<!-- 评论管理 -->
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="collapse" data-target="#website-dropdown" href="#"><i class="icon-sitemap"></i> 评论管理 <b class="caret"></b></a>
-<!-- 							<ul id="website-dropdown" class="collapse">
+							<a class="dropdown-toggle" data-toggle="collapse" data-target="#comment-dropdown" href="#"><i class="icon-sitemap"></i> 评论管理 <b class="caret"></b></a>
+<!-- 							<ul id="comment-dropdown" class="collapse">
 								<li><a href="listing.html">Pages</a></li>
 								<li><a href="listing.html">Menus</a></li>
 							</ul> -->
 						</li>
 						<!-- 商品目录管理 -->
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="collapse" data-target="#website-dropdown" href="#"><i class="icon-sitemap"></i> 商品目录管理 <b class="caret"></b></a>
-<!-- 							<ul id="website-dropdown" class="collapse">
+							<a class="dropdown-toggle" data-toggle="collapse" data-target="#goods-catalog-dropdown" href="#"><i class="icon-sitemap"></i> 商品目录管理 <b class="caret"></b></a>
+<!-- 							<ul id="goods-catalog-dropdown" class="collapse">
 								<li><a href="listing.html">Pages</a></li>
 								<li><a href="listing.html">Menus</a></li>
 							</ul> -->
@@ -91,17 +91,28 @@
 
 				<div class="secondary-masthead">
 
+<%-- 					<sec:authentication property="principal.username" var="username" /> --%>
+					
 					<ul class="nav nav-pills pull-right">
 						<li><a href="#"><i class="icon-globe"></i> View Website</a></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"><i class="icon-user"></i>
-								John Smith <b class="caret"></b> </a>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user"></i>
+ 								<sec:authentication property="principal.username" />
+							<b class="caret"></b> 
+							</a>
 							<ul class="dropdown-menu">
-								<li><a href="profile.html">Your Profile</a></li>
+<!-- 								<li><a href="profile.html">Your Profile</a></li>
 								<li class="active"><a href="form.html">Account Settings</a></li>
-								<li class="divider"></li>
-								<li><a href="">Logout</a></li>
-							</ul></li>
+								<li class="divider"></li> -->
+								<li>
+									<form action="${contextPath}/logout" method="post">
+										<sec:csrfInput />
+        								<button type="submit">退出</button>
+      								</form>
+      							</li>
+							</ul>
+						</li>
 					</ul>
 
 				</div>
@@ -109,7 +120,6 @@
 				<div class="main-area dashboard">
 
 					<div class="context">
-						<h1>手机列表</h1>
 						<jsp:doBody />
 					</div>
 					<div class="row">
